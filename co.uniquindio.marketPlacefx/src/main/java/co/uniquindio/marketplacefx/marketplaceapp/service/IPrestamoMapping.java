@@ -8,4 +8,5 @@ import java.util.List;
 public interface IPrestamoMapping {
     List<VendedorDto>getVendedores(List<Vendedor> listaVendedor);
     VendedorDto vendedorToVendedorDto(Vendedor vendedor);
+    Vendedor vendedorDtoToVendedor(VendedorDto vendedorDto);
 }

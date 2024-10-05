@@ -4,11 +4,7 @@ import co.uniquindio.marketplacefx.marketplaceapp.mapping.dto.VendedorDto;
 import co.uniquindio.marketplacefx.marketplaceapp.mapping.dto.VendedorDtoId;
 import javafx.scene.control.TextField;
 
-import java.util.List;
-
-public interface IModelFactoryService {
-    List<VendedorDto>obtenerListaVendedorDto();
-
+public interface IVendedorDtoCrud {
     boolean agregarVendedorDto(VendedorDto vendedorDto);
     boolean actualizarVendedor(VendedorDto vendedorOld,VendedorDto vendedorActualizado);
     boolean eliminarVendedor(VendedorDto vendedorDto);

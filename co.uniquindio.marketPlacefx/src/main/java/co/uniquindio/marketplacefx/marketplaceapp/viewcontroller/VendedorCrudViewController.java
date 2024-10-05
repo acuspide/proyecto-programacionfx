@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import co.uniquindio.marketplacefx.marketplaceapp.controller.VendedorCrudContoller;
 import co.uniquindio.marketplacefx.marketplaceapp.mapping.dto.VendedorDto;
+import co.uniquindio.marketplacefx.marketplaceapp.mapping.dto.VendedorDtoId;
 import co.uniquindio.marketplacefx.marketplaceapp.model.Vendedor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -13,6 +14,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
+import static co.uniquindio.marketplacefx.marketplaceapp.utils.PrestamoConstantes.*;
 
 public class VendedorCrudViewController {
     VendedorCrudContoller vendedorCrudContoller;
@@ -133,10 +136,27 @@ public class VendedorCrudViewController {
     private void agregarCliente() {
         VendedorDto vendedorDto = crearVendedorDto();
         if(datosValidosDto(vendedorDto)){
-            
+
+            if(vendedorCrudContoller.agregarVendedor(vendedorDto)){
+                listaVendedoresDto.add(vendedorDto);
+                limpiarCampos();
+                mostrarMensaje(TITULO_VENDEDOR_AGREGADO, HEADER, BODY_VENDEDOR_AGREGADO,Alert.AlertType.INFORMATION);
+            }else{
+                mostrarMensaje(TITULO_VENDEDOR_NO_AGREGADO, HEADER, BODY_VENDEDOR_NO_AGREGADO,Alert.AlertType.ERROR);
+            }
         }else{
+            mostrarMensaje(TITULO_INCOMPLETO, HEADER, BODY_INCOMPLETO,Alert.AlertType.WARNING);
 
         }
+    }
+
+    private void limpiarCampos() {
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtCedula.setText("");
+        txtDireccion.setText("");
+        txtUsuario.setText("");
+        txtContrasena.setText("");
     }
 
     private boolean datosValidosDto(VendedorDto vendedorDto) {
@@ -163,18 +183,96 @@ public class VendedorCrudViewController {
 
     @FXML
     void onActualizarVendedor(ActionEvent event) {
+        actualizarVendedor();
 
+    }
+
+    private void actualizarVendedor() {
+        int i ;
+        VendedorDto vendedorOld = datosViejos(vendedorSeleccionado);
+        VendedorDto vendedorActualizado = crearVendedorDto();
+        if (datosValidosDto(vendedorActualizado)){
+            if(vendedorCrudContoller.actualizarVendedor(vendedorOld,vendedorActualizado)){
+                   for (i=0; i<listaVendedoresDto.size(); i++){
+                       VendedorDto vendedorDto = listaVendedoresDto.get(i);
+                        if(vendedorDto.cedula().equalsIgnoreCase(vendedorOld.cedula())){
+                            listaVendedoresDto.set(i,vendedorActualizado);
+                        }
+                   }
+
+                limpiarCampos();
+                mostrarMensaje(TITULO_VENDEDOR_ACTUALIZADO, HEADER, BODY_VENDEDOR_ACTUALIZADO,Alert.AlertType.INFORMATION);
+            }else{
+                mostrarMensaje(TITULO_VENDEDOR_NO_ACTUALIZADO, HEADER, BODY_VENDEDOR_NO_ACTUALIZADO,Alert.AlertType.ERROR);
+            }
+
+        }else {
+                mostrarMensaje(TITULO_INCOMPLETO, HEADER, BODY_INCOMPLETO,Alert.AlertType.WARNING);
+
+        }
+    }
+
+    private VendedorDto datosViejos(VendedorDto vendedorSeleccionado) {
+        return new VendedorDto(vendedorSeleccionado.nombre(),
+                vendedorSeleccionado.apellido(),
+                vendedorSeleccionado.cedula(),
+                vendedorSeleccionado.direccion(),
+                vendedorSeleccionado.usuario(),
+                vendedorSeleccionado.contrasena());
     }
 
     @FXML
     void onEliminarVendedor(ActionEvent event) {
+        eliminarVendedor();
+
+    }
+
+    private void eliminarVendedor() {
+        VendedorDto vendedorDto = vendedorSeleccionado;
+        if(vendedorDto != null){
+           if(vendedorCrudContoller.eliminarVendedor(vendedorDto)){
+               listaVendedoresDto.remove(vendedorDto);
+               limpiarCampos();
+               mostrarMensaje(TITULO_VENDEDOR_ELIMINADO, HEADER, BODY_VENDEDOR_ELIMINADO,Alert.AlertType.INFORMATION);
+           }else {
+               mostrarMensaje(TITULO_VENDEDOR_NO_ELIMINADO, HEADER, BODY_VENDEDOR_NO_ELIMINADO,Alert.AlertType.ERROR);
+           }
+        }else {
+            mostrarMensaje(TITULO_INCOMPLETO, HEADER, BODY_INCOMPLETO,Alert.AlertType.WARNING);
+        }
 
     }
 
     @FXML
     void onBurcarVendedor(ActionEvent event) {
+        buscarVendedor();
 
     }
+
+    private void buscarVendedor() {
+       VendedorDtoId vendedorDtoId =new  VendedorDtoId  (txtCedula.getText());
+        if (!vendedorDtoId.cedula().isEmpty()){
+            if(vendedorCrudContoller.buscarVendedor(vendedorDtoId)){
+                for(VendedorDto vendedorDto : listaVendedoresDto){
+                    if(vendedorDto.cedula().equalsIgnoreCase(vendedorDtoId.cedula())){
+                        txtNombre.setText(vendedorDto.nombre());
+                        txtApellido.setText(vendedorDto.apellido());
+                        txtCedula.setText(vendedorDto.cedula());
+                        txtDireccion.setText(vendedorDto.direccion());
+                        txtUsuario.setText(vendedorDto.usuario());
+                        txtContrasena.setText(vendedorDto.contrasena());
+                        mostrarMensaje(TITULO_VENDEDOR_ENCONTRADO, HEADER, BODY_VENDEDOR_ENCONTRADO,Alert.AlertType.INFORMATION);
+                        break;
+                    }
+                }
+            }else{
+                mostrarMensaje(TITULO_VENDEDOR_NO_ENCONTRADO, HEADER, BODY_VENDEDOR_NO_ENCONTRADO,Alert.AlertType.ERROR);
+            }
+        }else {
+            mostrarMensaje(TITULO_INCOMPLETO, HEADER, BODY_INCOMPLETO,Alert.AlertType.WARNING);
+        }
+    }
+
     private void mostrarInformacionVendedor(VendedorDto vendedorSeleccionado) {
         if(vendedorSeleccionado != null){
             txtNombre.setText(vendedorSeleccionado.nombre());

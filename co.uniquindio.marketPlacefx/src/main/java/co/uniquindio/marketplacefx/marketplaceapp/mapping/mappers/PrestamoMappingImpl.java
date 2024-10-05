@@ -31,5 +31,15 @@ public class PrestamoMappingImpl implements IPrestamoMapping {
                 vendedor.getContrasena());
     }
 
+    @Override
+    public Vendedor vendedorDtoToVendedor(VendedorDto vendedorDto) {
+        return new Vendedor(vendedorDto.nombre(),
+                vendedorDto.apellido(),
+                vendedorDto.cedula(),
+                vendedorDto.direccion(),
+                vendedorDto.usuario(),
+                vendedorDto.contrasena());
+    }
+
 
 }
