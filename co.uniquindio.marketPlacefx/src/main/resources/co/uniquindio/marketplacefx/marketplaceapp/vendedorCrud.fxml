@@ -9,7 +9,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.marketplacefx.marketplaceapp.viewcontroller.VendedorCrudViewController">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="588.0" prefWidth="723.0">
@@ -32,11 +31,12 @@
                         <TextField fx:id="txtContrasena" layoutX="497.0" layoutY="161.0" />
                         <Separator layoutX="-4.0" layoutY="43.0" prefHeight="3.0" prefWidth="730.0" />
                         <Separator layoutY="221.0" prefHeight="3.0" prefWidth="722.0" />
-                        <Button fx:id="btnAgregarVendedor" layoutX="143.0" layoutY="243.0" mnemonicParsing="false" onAction="#onAgregarCliente" prefHeight="26.0" prefWidth="102.0" text="Agregar" />
-                        <Button fx:id="btnActualizarVnededor" layoutX="266.0" layoutY="243.0" mnemonicParsing="false" onAction="#onActualizarVendedor" prefHeight="26.0" prefWidth="102.0" text="Actualizar" />
-                        <Button fx:id="btnEliminarVendedor" layoutX="392.0" layoutY="243.0" mnemonicParsing="false" onAction="#onEliminarVendedor" prefHeight="26.0" prefWidth="102.0" text="Eliminar" />
+                        <Button fx:id="btnAgregarVendedor" layoutX="87.0" layoutY="242.0" mnemonicParsing="false" onAction="#onAgregarCliente" prefHeight="26.0" prefWidth="102.0" text="Agregar" />
+                        <Button fx:id="btnActualizarVnededor" layoutX="204.0" layoutY="242.0" mnemonicParsing="false" onAction="#onActualizarVendedor" prefHeight="26.0" prefWidth="102.0" text="Actualizar" />
+                        <Button fx:id="btnEliminarVendedor" layoutX="330.0" layoutY="242.0" mnemonicParsing="false" onAction="#onEliminarVendedor" prefHeight="26.0" prefWidth="102.0" text="Eliminar" />
                         <Label layoutX="347.0" layoutY="14.0" text="Vendedor" />
-                        <Button fx:id="btnBurcarVendedor" layoutX="512.0" layoutY="243.0" mnemonicParsing="false" onAction="#onBurcarVendedor" prefHeight="26.0" prefWidth="90.0" text="Buscar" />
+                        <Button fx:id="btnBurcarVendedor" layoutX="450.0" layoutY="242.0" mnemonicParsing="false" onAction="#onBurcarVendedor" prefHeight="26.0" prefWidth="90.0" text="Buscar" />
+                        <Button fx:id="btnLimpiar" layoutX="557.0" layoutY="242.0" mnemonicParsing="false" onAction="#onLimpiar" prefHeight="26.0" prefWidth="102.0" text="Limpiar" />
                      </children>
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="342.0" prefWidth="646.0">

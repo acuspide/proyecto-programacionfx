@@ -1,43 +1,40 @@
 package co.uniquindio.marketplacefx.marketplaceapp.model.builder;
 
+import co.uniquindio.marketplacefx.marketplaceapp.model.Administrador;
 import co.uniquindio.marketplacefx.marketplaceapp.model.Usuario;
-import co.uniquindio.marketplacefx.marketplaceapp.model.Vendedor;
 
-
-public class VendedorBuilder {
+public class AdministradorBuilder {
     protected String nombre;
     protected String apellido;
     protected String cedula;
     protected String direccion;
     protected Usuario usuario;
 
-
-    public VendedorBuilder nombre(String nombre) {
+    public AdministradorBuilder nombre(String nombre) {
         this.nombre = nombre;
         return this;
     }
 
-
-    public VendedorBuilder usuario(Usuario usuario) {
+    public AdministradorBuilder usuario(Usuario usuario) {
         this.usuario = usuario;
         return this;
     }
 
-    public VendedorBuilder direccion(String direccion) {
+    public AdministradorBuilder direccion(String direccion) {
         this.direccion = direccion;
         return this;
     }
 
-    public VendedorBuilder cedula(String cedula) {
+    public AdministradorBuilder cedula(String cedula) {
         this.cedula = cedula;
         return this;
     }
 
-    public VendedorBuilder apellido(String apellido) {
+    public AdministradorBuilder apellido(String apellido) {
         this.apellido = apellido;
         return this;
     }
-    public Vendedor build(){
-        return new Vendedor(nombre,apellido,cedula,direccion,usuario);
+    public Administrador build(){
+        return new Administrador(nombre,apellido,cedula,direccion,usuario);
     }
 }

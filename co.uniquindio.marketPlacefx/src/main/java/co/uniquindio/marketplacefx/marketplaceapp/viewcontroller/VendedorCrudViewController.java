@@ -1,12 +1,15 @@
 package co.uniquindio.marketplacefx.marketplaceapp.viewcontroller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 import co.uniquindio.marketplacefx.marketplaceapp.controller.VendedorCrudContoller;
 import co.uniquindio.marketplacefx.marketplaceapp.mapping.dto.VendedorDto;
 import co.uniquindio.marketplacefx.marketplaceapp.mapping.dto.VendedorDtoId;
+import co.uniquindio.marketplacefx.marketplaceapp.model.Usuario;
 import co.uniquindio.marketplacefx.marketplaceapp.model.Vendedor;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -19,6 +22,7 @@ import static co.uniquindio.marketplacefx.marketplaceapp.utils.PrestamoConstante
 
 public class VendedorCrudViewController {
     VendedorCrudContoller vendedorCrudContoller;
+    List<Usuario> listaUsuarios=new ArrayList<>();
     ObservableList<VendedorDto>listaVendedoresDto = FXCollections.observableArrayList();
     VendedorDto vendedorSeleccionado;
 
@@ -27,6 +31,9 @@ public class VendedorCrudViewController {
 
     @FXML
     private URL location;
+
+    @FXML
+    private Button btnLimpiar;
 
     @FXML
     private Button btnActualizarVnededor;
@@ -59,7 +66,7 @@ public class VendedorCrudViewController {
     private TableColumn<VendedorDto, String> tcNombre;
 
     @FXML
-    private TableColumn<VendedorDto,String> tcUsuario;
+    private TableColumn<VendedorDto, String> tcUsuario;
 
     @FXML
     private TextField txtApellido;
@@ -92,11 +99,13 @@ public class VendedorCrudViewController {
         obtenerVendedores();
         tableVendedor.getItems().clear();
         tableVendedor.setItems(listaVendedoresDto);
+        limpiarCampos();
         listenerSelection();
     }
 
     private void obtenerVendedores() {
         listaVendedoresDto.addAll(vendedorCrudContoller.obtenerVendedores());
+        listaUsuarios.addAll(vendedorCrudContoller.obtenerUsuarios());
     }
 
     private void initDataBinding() {
@@ -104,8 +113,9 @@ public class VendedorCrudViewController {
         tcApellido.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().apellido()));
         tcCedula.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().cedula()));
         tcDireccion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().direccion()));
-        tcUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().usuario()));
-        tcContrasena.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().contrasena()));
+        tcUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().usuario().getNickUsuario()));
+        tcContrasena.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().usuario().getContrasena()));
+
     }
     private void listenerSelection() {
         //Sirve la dar la seleccion de la tabla cada que se seleccione se va guardar en una variable cliente seleccionado
@@ -123,8 +133,8 @@ public class VendedorCrudViewController {
             txtApellido.setText(vendedorSeleccionado.apellido());
             txtCedula.setText(vendedorSeleccionado.cedula());
             txtDireccion.setText(vendedorSeleccionado.direccion());
-            txtUsuario.setText(vendedorSeleccionado.usuario());
-            txtContrasena.setText(vendedorSeleccionado.contrasena());
+            txtUsuario.setText(vendedorSeleccionado.usuario().getNickUsuario());
+            txtContrasena.setText(vendedorSeleccionado.usuario().getContrasena());
         }
     }
 
@@ -139,6 +149,7 @@ public class VendedorCrudViewController {
 
             if(vendedorCrudContoller.agregarVendedor(vendedorDto)){
                 listaVendedoresDto.add(vendedorDto);
+                listaUsuarios.add(vendedorDto.usuario());
                 limpiarCampos();
                 mostrarMensaje(TITULO_VENDEDOR_AGREGADO, HEADER, BODY_VENDEDOR_AGREGADO,Alert.AlertType.INFORMATION);
             }else{
@@ -157,6 +168,7 @@ public class VendedorCrudViewController {
         txtDireccion.setText("");
         txtUsuario.setText("");
         txtContrasena.setText("");
+        vendedorSeleccionado=crearVendedorDto();
     }
 
     private boolean datosValidosDto(VendedorDto vendedorDto) {
@@ -164,8 +176,8 @@ public class VendedorCrudViewController {
                 vendedorDto.apellido().isEmpty() ||
                 vendedorDto.cedula().isEmpty() ||
                 vendedorDto.direccion().isEmpty() ||
-                vendedorDto.usuario().isEmpty() ||
-                vendedorDto.contrasena().isEmpty()){
+                vendedorDto.usuario().getNickUsuario().isEmpty() ||
+                vendedorDto.usuario().getContrasena().isEmpty()){
             return false;
         }else {
             return true;
@@ -173,12 +185,13 @@ public class VendedorCrudViewController {
     }
 
     private VendedorDto crearVendedorDto() {
+        Usuario usuario=new Usuario(txtUsuario.getText(), txtContrasena.getText(),txtCedula.getText());
+
         return new VendedorDto(txtNombre.getText(),
                 txtApellido.getText(),
                 txtCedula.getText(),
                 txtDireccion.getText(),
-                txtUsuario.getText(),
-                txtContrasena.getText());
+                usuario);
     }
 
     @FXML
@@ -188,17 +201,18 @@ public class VendedorCrudViewController {
     }
 
     private void actualizarVendedor() {
-        int i ;
+
         VendedorDto vendedorOld = datosViejos(vendedorSeleccionado);
         VendedorDto vendedorActualizado = crearVendedorDto();
         if (datosValidosDto(vendedorActualizado)){
             if(vendedorCrudContoller.actualizarVendedor(vendedorOld,vendedorActualizado)){
-                   for (i=0; i<listaVendedoresDto.size(); i++){
-                       VendedorDto vendedorDto = listaVendedoresDto.get(i);
-                        if(vendedorDto.cedula().equalsIgnoreCase(vendedorOld.cedula())){
-                            listaVendedoresDto.set(i,vendedorActualizado);
-                        }
-                   }
+                for (int i=0; i<listaVendedoresDto.size(); i++){
+                    VendedorDto vendedorDto = listaVendedoresDto.get(i);
+                    if(vendedorDto.cedula().equalsIgnoreCase(vendedorOld.cedula())){
+                        listaVendedoresDto.set(i,vendedorActualizado);
+                        listaUsuarios.set(i,vendedorActualizado.usuario());
+                    }
+                }
 
                 limpiarCampos();
                 mostrarMensaje(TITULO_VENDEDOR_ACTUALIZADO, HEADER, BODY_VENDEDOR_ACTUALIZADO,Alert.AlertType.INFORMATION);
@@ -207,18 +221,18 @@ public class VendedorCrudViewController {
             }
 
         }else {
-                mostrarMensaje(TITULO_INCOMPLETO, HEADER, BODY_INCOMPLETO,Alert.AlertType.WARNING);
+            mostrarMensaje(TITULO_INCOMPLETO, HEADER, BODY_INCOMPLETO,Alert.AlertType.WARNING);
 
         }
     }
 
     private VendedorDto datosViejos(VendedorDto vendedorSeleccionado) {
+
         return new VendedorDto(vendedorSeleccionado.nombre(),
                 vendedorSeleccionado.apellido(),
                 vendedorSeleccionado.cedula(),
                 vendedorSeleccionado.direccion(),
-                vendedorSeleccionado.usuario(),
-                vendedorSeleccionado.contrasena());
+                vendedorSeleccionado.usuario());
     }
 
     @FXML
@@ -230,13 +244,14 @@ public class VendedorCrudViewController {
     private void eliminarVendedor() {
         VendedorDto vendedorDto = vendedorSeleccionado;
         if(vendedorDto != null){
-           if(vendedorCrudContoller.eliminarVendedor(vendedorDto)){
-               listaVendedoresDto.remove(vendedorDto);
-               limpiarCampos();
-               mostrarMensaje(TITULO_VENDEDOR_ELIMINADO, HEADER, BODY_VENDEDOR_ELIMINADO,Alert.AlertType.INFORMATION);
-           }else {
-               mostrarMensaje(TITULO_VENDEDOR_NO_ELIMINADO, HEADER, BODY_VENDEDOR_NO_ELIMINADO,Alert.AlertType.ERROR);
-           }
+            if(vendedorCrudContoller.eliminarVendedor(vendedorDto)){
+                listaVendedoresDto.remove(vendedorDto);
+                listaUsuarios.remove(vendedorDto.usuario());
+                limpiarCampos();
+                mostrarMensaje(TITULO_VENDEDOR_ELIMINADO, HEADER, BODY_VENDEDOR_ELIMINADO,Alert.AlertType.INFORMATION);
+            }else {
+                mostrarMensaje(TITULO_VENDEDOR_NO_ELIMINADO, HEADER, BODY_VENDEDOR_NO_ELIMINADO,Alert.AlertType.ERROR);
+            }
         }else {
             mostrarMensaje(TITULO_INCOMPLETO, HEADER, BODY_INCOMPLETO,Alert.AlertType.WARNING);
         }
@@ -250,7 +265,7 @@ public class VendedorCrudViewController {
     }
 
     private void buscarVendedor() {
-       VendedorDtoId vendedorDtoId =new  VendedorDtoId  (txtCedula.getText());
+        VendedorDtoId vendedorDtoId =new  VendedorDtoId  (txtCedula.getText());
         if (!vendedorDtoId.cedula().isEmpty()){
             if(vendedorCrudContoller.buscarVendedor(vendedorDtoId)){
                 for(VendedorDto vendedorDto : listaVendedoresDto){
@@ -259,28 +274,17 @@ public class VendedorCrudViewController {
                         txtApellido.setText(vendedorDto.apellido());
                         txtCedula.setText(vendedorDto.cedula());
                         txtDireccion.setText(vendedorDto.direccion());
-                        txtUsuario.setText(vendedorDto.usuario());
-                        txtContrasena.setText(vendedorDto.contrasena());
+                        txtUsuario.setText(vendedorDto.usuario().getNickUsuario());
+                        txtContrasena.setText(vendedorDto.usuario().getContrasena());
                         mostrarMensaje(TITULO_VENDEDOR_ENCONTRADO, HEADER, BODY_VENDEDOR_ENCONTRADO,Alert.AlertType.INFORMATION);
                         break;
                     }
                 }
-            }else{
+            }else {
                 mostrarMensaje(TITULO_VENDEDOR_NO_ENCONTRADO, HEADER, BODY_VENDEDOR_NO_ENCONTRADO,Alert.AlertType.ERROR);
             }
         }else {
             mostrarMensaje(TITULO_INCOMPLETO, HEADER, BODY_INCOMPLETO,Alert.AlertType.WARNING);
-        }
-    }
-
-    private void mostrarInformacionVendedor(VendedorDto vendedorSeleccionado) {
-        if(vendedorSeleccionado != null){
-            txtNombre.setText(vendedorSeleccionado.nombre());
-            txtApellido.setText(vendedorSeleccionado.apellido());
-            txtCedula.setText(vendedorSeleccionado.cedula());
-            txtDireccion.setText(vendedorSeleccionado.direccion());
-            txtUsuario.setText(vendedorSeleccionado.usuario());
-            txtContrasena.setText(vendedorSeleccionado.contrasena());
         }
     }
 
@@ -303,6 +307,11 @@ public class VendedorCrudViewController {
         } else {
             return false;
         }
+    }
+
+    @FXML
+    void onLimpiar(ActionEvent event) {
+        limpiarCampos();
     }
 
 

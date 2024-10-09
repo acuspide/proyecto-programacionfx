@@ -8,6 +8,11 @@ import java.util.List;
 
 public class PrestamoObjeto {
     private List<Vendedor>listaVendedores = new ArrayList<>();
+    private List<Usuario>listaUsuarios = new ArrayList<>();
+
+    public List<Usuario> getListaUsuarios() {
+        return listaUsuarios;
+    }
 
     public List<Vendedor> getListaVendedores() {
         return listaVendedores;
@@ -17,6 +22,7 @@ public class PrestamoObjeto {
         Vendedor vendedorEncontrado = obtenerVendedor(vendedor.getCedula());
         if(vendedorEncontrado == null){
             listaVendedores.add(vendedor);
+            listaUsuarios.add(vendedor.getUsuario());
             return true;
         }else{
             return false;
@@ -36,33 +42,29 @@ public class PrestamoObjeto {
     }
 
     public boolean actualizarVendedor(Vendedor vendedorOld,Vendedor vendedorActualizado) {
-        int index=0;
         Vendedor vendedor = obtenerVendedor(vendedorOld.getCedula());
         Vendedor vendedorMod= obtenerVendedor(vendedorActualizado.getCedula());
         if(vendedor!=null){
-            for(Vendedor v:listaVendedores) {
-                if (v.equals(vendedorOld.getCedula())) {
-                    index = listaVendedores.indexOf(v);
-                    break;
-                }
+            if(vendedor.getCedula().equals(vendedorActualizado.getCedula()) || vendedorMod==null){
+                int index=getIndex(vendedorOld.getCedula());
+                listaVendedores.set(index,vendedorActualizado);
+                listaUsuarios.set(index,vendedorActualizado.getUsuario());
+                return true;
+            }else{return false;}
+        }else{return false;}
+    }
+    public int getIndex(String cedula) {
+        int index=0;
+        for(Vendedor v:listaVendedores) {
+            if (v.equals(cedula)) {
+                index = listaVendedores.indexOf(v);
+                break;
             }
-        }else{return false;}
-        if(vendedor.getCedula().equals(vendedorActualizado.getCedula()) || vendedorMod==null){
-            listaVendedores.set(index,vendedorActualizado);
-            return true;
-        }else{return false;}
+        }
+
+        return index;
     }
 
-    private Vendedor actualizarVendedorBuilder(Vendedor vendedorActualizado) {
-        return  Vendedor.builder()
-                .nombre(vendedorActualizado.getNombre())
-                .apellido(vendedorActualizado.getApellido())
-                .cedula(vendedorActualizado.getCedula())
-                .direccion(vendedorActualizado.getDireccion())
-                .usuario(vendedorActualizado.getUsuario())
-                .contrasena(vendedorActualizado.getContrasena())
-                .build();
-    }
 
     public boolean eliminarVendedor(Vendedor vendedor) {
         Vendedor vendedorExisten = obtenerVendedor(vendedor.getCedula());
@@ -70,6 +72,7 @@ public class PrestamoObjeto {
             for (Vendedor vendedor1: listaVendedores){
                 if(vendedor1.getCedula().equalsIgnoreCase(vendedor.getCedula())){
                     listaVendedores.remove(vendedor1);
+                    listaUsuarios.remove(vendedor1.getUsuario());
                     return true;
 
                 }

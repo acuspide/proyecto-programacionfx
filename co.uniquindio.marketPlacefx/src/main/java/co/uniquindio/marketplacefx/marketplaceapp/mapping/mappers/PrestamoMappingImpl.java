@@ -27,8 +27,7 @@ public class PrestamoMappingImpl implements IPrestamoMapping {
                 vendedor.getApellido(),
                 vendedor.getCedula(),
                 vendedor.getDireccion(),
-                vendedor.getUsuario(),
-                vendedor.getContrasena());
+                vendedor.getUsuario());
     }
 
     @Override
@@ -37,8 +36,7 @@ public class PrestamoMappingImpl implements IPrestamoMapping {
                 vendedorDto.apellido(),
                 vendedorDto.cedula(),
                 vendedorDto.direccion(),
-                vendedorDto.usuario(),
-                vendedorDto.contrasena());
+                vendedorDto.usuario());
     }
 
 
