@@ -5,7 +5,6 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.marketplacefx.marketplaceapp.viewcontroller.MarketPlaceViewController">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="620.0" prefWidth="721.0">
@@ -27,14 +26,29 @@
                   </Tab>
                   <Tab text="Producto">
                      <content>
-                         <children>
-                             <SplitPane layoutX="-22.0" layoutY="-22.0" orientation="VERTICAL" prefHeight="558.0" prefWidth="926.0">
-                                 <items>
-                                     <fx:include source="productoCrud.fxml" />
-                                 </items>
-                             </SplitPane>
-                         </children>
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="610.0" prefWidth="744.0">
+                             <children>
+                                 <SplitPane orientation="VERTICAL" prefHeight="558.0" prefWidth="926.0">
+                                     <items>
+                                         <fx:include source="productocrud.fxml" />
+                                     </items>
+                                 </SplitPane>
+                             </children>
+                         </AnchorPane>
                      </content>
+                  </Tab>
+                  <Tab text="Login">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="610.0" prefWidth="744.0">
+                            <children>
+                                <SplitPane layoutX="85.0" orientation="VERTICAL" prefHeight="558.0" prefWidth="926.0">
+                                    <items>
+                                        <fx:include source="login.fxml" />
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
                   </Tab>
                </tabs>
             </TabPane>
