@@ -5,23 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ac7114d2-4448-4c6a-8984-24d1c8bd401a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/model/Administrador.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/model/Persona.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/model/Producto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/model/Usuario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/model/builder/AdministradorBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/model/builder/ProductoBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/controller/VendedorCrudContoller.java" beforeDir="false" afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/controller/VendedorCrudContoller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/controller/ProductoCrudController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/mapping/dto/ProductoDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/mapping/dto/ProductoDtoId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/service/IProductoCrud.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/viewcontroller/LoginViewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/viewcontroller/ProductoCrudViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/factory/ModelFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/factory/ModelFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/mapping/dto/VendedorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/mapping/dto/VendedorDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/mapping/mappers/PrestamoMappingImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/mapping/mappers/PrestamoMappingImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/model/PrestamoObjeto.java" beforeDir="false" afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/model/PrestamoObjeto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/model/Vendedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/model/Vendedor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/model/builder/VendedorBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/model/builder/VendedorBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/service/IModelFactoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/service/IModelFactoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/service/IPrestamoMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/service/IPrestamoMapping.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/utils/DataUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/utils/DataUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/viewcontroller/VendedorCrudViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/viewcontroller/VendedorCrudViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/resources/co/uniquindio/marketplacefx/marketplaceapp/vendedorCrud.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/resources/co/uniquindio/marketplacefx/marketplaceapp/vendedorCrud.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/resources/co/uniquindio/marketplacefx/marketplaceapp/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/resources/co/uniquindio/marketplacefx/marketplaceapp/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/resources/co/uniquindio/marketplacefx/marketplaceapp/marketPlace.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/resources/co/uniquindio/marketplacefx/marketplaceapp/marketPlace.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/resources/co/uniquindio/marketplacefx/marketplaceapp/productocrud.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/resources/co/uniquindio/marketplacefx/marketplaceapp/productocrud.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +30,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Record" />
+        <option value="Interface" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -46,15 +48,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.MarketPlaceApplication.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "dev__class",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/yisus/OneDrive/Escritorio/Tercer Semestre/Programacion 2/Proyecto final/copias/proyecto-programacionfx"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.MarketPlaceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev__class&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/yisus/OneDrive/Escritorio/Tercer Semestre/Programacion 2/Proyecto final/copias/proyecto-programacionfx&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -70,26 +72,8 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/controller/VendedorCrudContoller.java</url>
-          <line>29</line>
-          <properties class="co.uniquindio.marketplacefx.marketplaceapp.controller.VendedorCrudContoller" method="actualizarVendedor">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/factory/ModelFactory.java</url>
-          <line>57</line>
-          <properties class="co.uniquindio.marketplacefx.marketplaceapp.factory.ModelFactory" method="actualizarVendedor">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/co.uniquindio.marketPlacefx/src/main/java/co/uniquindio/marketplacefx/marketplaceapp/model/PrestamoObjeto.java</url>
-          <line>43</line>
+          <line>50</line>
           <properties class="co.uniquindio.marketplacefx.marketplaceapp.model.PrestamoObjeto" method="actualizarVendedor">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />

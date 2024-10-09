@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="591.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.marketplacefx.marketplaceapp.Productocrud">
+<AnchorPane prefHeight="591.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.marketplacefx.marketplaceapp.viewcontroller.ProductoCrudViewController">
    <children>
       <AnchorPane prefHeight="618.0" prefWidth="754.0">
          <children>
