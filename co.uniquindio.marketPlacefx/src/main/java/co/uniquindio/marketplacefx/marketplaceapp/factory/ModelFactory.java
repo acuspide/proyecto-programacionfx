@@ -5,6 +5,7 @@ import co.uniquindio.marketplacefx.marketplaceapp.mapping.dto.VendedorDtoId;
 import co.uniquindio.marketplacefx.marketplaceapp.mapping.mappers.PrestamoMappingImpl;
 import co.uniquindio.marketplacefx.marketplaceapp.model.MarketPlace;
 import co.uniquindio.marketplacefx.marketplaceapp.model.PrestamoObjeto;
+import co.uniquindio.marketplacefx.marketplaceapp.model.Usuario;
 import co.uniquindio.marketplacefx.marketplaceapp.model.Vendedor;
 import co.uniquindio.marketplacefx.marketplaceapp.service.IModelFactoryService;
 import co.uniquindio.marketplacefx.marketplaceapp.service.IPrestamoMapping;
@@ -40,6 +41,12 @@ public class ModelFactory implements IModelFactoryService, IVendedorDtoCrud {
     public List<VendedorDto> obtenerListaVendedorDto() {
         return mapper.getVendedores(prestamoObjeto.getListaVendedores());
     }
+
+    @Override
+    public List<Usuario> obtenerListaUsuario() {
+        return prestamoObjeto.getListaUsuarios();
+    }
+
 
     @Override
     public boolean agregarVendedorDto(VendedorDto vendedorDto) {

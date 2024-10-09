@@ -3,6 +3,7 @@ package co.uniquindio.marketplacefx.marketplaceapp.controller;
 import co.uniquindio.marketplacefx.marketplaceapp.factory.ModelFactory;
 import co.uniquindio.marketplacefx.marketplaceapp.mapping.dto.VendedorDto;
 import co.uniquindio.marketplacefx.marketplaceapp.mapping.dto.VendedorDtoId;
+import co.uniquindio.marketplacefx.marketplaceapp.model.Usuario;
 import co.uniquindio.marketplacefx.marketplaceapp.model.builder.VendedorBuilder;
 import javafx.scene.control.TextField;
 
@@ -14,6 +15,10 @@ public class VendedorCrudContoller {
         modelFactory = ModelFactory.getInstance();
 
     }
+    public List<Usuario> obtenerUsuarios() {
+        return modelFactory.obtenerListaUsuario();
+    }
+
     public List<VendedorDto> obtenerVendedores() {
         return modelFactory.obtenerListaVendedorDto();
     }

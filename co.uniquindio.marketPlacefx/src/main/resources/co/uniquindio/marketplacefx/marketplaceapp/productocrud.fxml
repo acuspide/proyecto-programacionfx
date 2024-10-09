@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="591.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.marketplacefx.marketplaceapp.Productocrud">
+   <children>
+      <AnchorPane prefHeight="618.0" prefWidth="754.0">
+         <children>
+            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="588.0" prefWidth="723.0">
+               <children>
+                  <SplitPane dividerPositions="0.5410557184750732" orientation="VERTICAL" prefHeight="588.0" prefWidth="723.0">
+                     <items>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="334.0" prefWidth="735.0">
+                           <children>
+                              <Label layoutX="85.0" layoutY="57.0" text="Nombre" />
+                              <Label layoutX="81.0" layoutY="111.0" text="Categoria" />
+                              <Label layoutX="85.0" layoutY="165.0" text="Imagen" />
+                              <Label layoutX="406.0" layoutY="57.0" text="Id" />
+                              <Label layoutX="406.0" layoutY="112.0" text="Precio" />
+                              <TextField fx:id="txtNombre" layoutX="156.0" layoutY="53.0" />
+                              <TextField fx:id="txtId" layoutX="497.0" layoutY="53.0" />
+                              <TextField fx:id="txtCagetoria" layoutX="156.0" layoutY="107.0" />
+                              <TextField fx:id="txtPrecio" layoutX="497.0" layoutY="107.0" />
+                              <TextField fx:id="txtImagen" layoutX="156.0" layoutY="161.0" />
+                              <Separator layoutX="-4.0" layoutY="43.0" prefHeight="3.0" prefWidth="730.0" />
+                              <Separator layoutY="221.0" prefHeight="3.0" prefWidth="722.0" />
+                              <Button fx:id="btnAgregarProducto" layoutX="87.0" layoutY="242.0" mnemonicParsing="false" onAction="#onAgregarProducto" prefHeight="26.0" prefWidth="102.0" text="Agregar" />
+                              <Button fx:id="btnActualizarProducto" layoutX="204.0" layoutY="242.0" mnemonicParsing="false" onAction="#onActualizarProducto" prefHeight="26.0" prefWidth="102.0" text="Actualizar" />
+                              <Button fx:id="btnEliminarProducto" layoutX="330.0" layoutY="242.0" mnemonicParsing="false" onAction="#onEliminarProducto" prefHeight="26.0" prefWidth="102.0" text="Eliminar" />
+                              <Label layoutX="347.0" layoutY="14.0" text="Producto" />
+                              <Button fx:id="btnBurcarProducto" layoutX="450.0" layoutY="242.0" mnemonicParsing="false" onAction="#onBurcarProdcuto" prefHeight="26.0" prefWidth="90.0" text="Buscar" />
+                              <Button fx:id="btnLimpiar" layoutX="557.0" layoutY="242.0" mnemonicParsing="false" onAction="#onLimpiar" prefHeight="26.0" prefWidth="102.0" text="Limpiar" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="342.0" prefWidth="646.0">
+                           <children>
+                              <TableView fx:id="tableProducto" prefHeight="266.0" prefWidth="723.0">
+                                 <columns>
+                                    <TableColumn fx:id="tcNombre" prefWidth="139.999966442585" text="Nombre" />
+                                    <TableColumn fx:id="tcId" prefWidth="140.00001525878906" text="Id" />
+                                    <TableColumn fx:id="tcCategoria" minWidth="7.20001220703125" prefWidth="129.5999755859375" text="Categoria" />
+                                    <TableColumn fx:id="tcPrecio" prefWidth="141.60003662109375" text="Precio" />
+                                    <TableColumn fx:id="tcImagen" prefWidth="173.60003662109375" text="Imagen" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
