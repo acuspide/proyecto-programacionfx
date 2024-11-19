@@ -52,4 +52,7 @@ public class Persona {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
+
+    public void setDireccion(String direccion) { this.direccion = direccion;
+    }
 }

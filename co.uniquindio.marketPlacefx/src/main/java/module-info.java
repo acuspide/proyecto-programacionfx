@@ -1,6 +1,7 @@
 module co.uniquindio.marketplacefx.marketplaceapp {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
 
     opens co.uniquindio.marketplacefx.marketplaceapp to javafx.fxml;

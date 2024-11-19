@@ -1,4 +1,4 @@
 package co.uniquindio.marketplacefx.marketplaceapp.mapping.dto;
 
-public record ProductoDtoId(String id) {
+public record UsuarioDto(String nickUsuario, String contrasena) {
 }

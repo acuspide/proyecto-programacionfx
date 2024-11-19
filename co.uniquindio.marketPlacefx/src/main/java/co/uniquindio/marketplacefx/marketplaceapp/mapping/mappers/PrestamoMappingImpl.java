@@ -1,11 +1,13 @@
 package co.uniquindio.marketplacefx.marketplaceapp.mapping.mappers;
 
 import co.uniquindio.marketplacefx.marketplaceapp.mapping.dto.ProductoDto;
+import co.uniquindio.marketplacefx.marketplaceapp.mapping.dto.SugerenciaDto;
+import co.uniquindio.marketplacefx.marketplaceapp.mapping.dto.UsuarioDto;
 import co.uniquindio.marketplacefx.marketplaceapp.mapping.dto.VendedorDto;
 import co.uniquindio.marketplacefx.marketplaceapp.model.Producto;
+import co.uniquindio.marketplacefx.marketplaceapp.model.Usuario;
 import co.uniquindio.marketplacefx.marketplaceapp.model.Vendedor;
 import co.uniquindio.marketplacefx.marketplaceapp.service.IPrestamoMapping;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,25 +43,44 @@ public class PrestamoMappingImpl implements IPrestamoMapping {
                 vendedorDto.usuario());
     }
 
+
+
     @Override
-    public List<ProductoDto> getProductos(List<Producto> listaProducto) {
-        if(listaProducto == null){
-            return null;
+    public List<UsuarioDto> usuarioToUsuarioDto(List<Usuario> listaUsuarios) {
+        List<UsuarioDto> usuariosDto= new ArrayList<UsuarioDto>();
+        for (Usuario usuario: listaUsuarios){
+            usuariosDto.add(new UsuarioDto(usuario.getNickUsuario(),usuario.getContrasena()));
         }
-        List<ProductoDto>listaProductoDto = new ArrayList<ProductoDto>(listaProducto.size());
-        for (Producto producto : listaProducto){
-            listaProductoDto.add(productoToProductoDto(producto));
-        }
-        return listaProductoDto;
+
+        return usuariosDto;
     }
 
     @Override
-    public Producto productoDtoToProducto(ProductoDto producto) {
-        return new Producto(producto.nombre(),
-                producto.id(),
-                producto.categoria(),
-                producto.precio(),
-                producto.imagen());
+    public List<ProductoDto> listaProductosTolistaProductosDto(List<Producto> productos) {
+        List<ProductoDto>productosDto=new ArrayList<>();
+        for (Producto producto: productos){
+            productosDto.add(productoToProductoDto(producto));
+        }
+        return productosDto;
+    }
+
+    @Override
+    public Producto ProductoDtoToProducto(ProductoDto productoDto) {
+        return new Producto(productoDto.nombre(),
+                productoDto.id(),
+                productoDto.categoria(),
+                productoDto.precio(),
+                productoDto.rutaImagen(),
+                productoDto.descripcion());
+    }
+
+    @Override
+    public List<SugerenciaDto> VendedorToSugerenciaDto(List<Vendedor> vendedores) {
+        List<SugerenciaDto>sugerenciaDtos = new ArrayList<>();
+        for (Vendedor vendedor: vendedores){
+            sugerenciaDtos.add(new SugerenciaDto(vendedor.getNombre(),vendedor.usuario.getNickUsuario()));
+        }
+        return sugerenciaDtos;
     }
 
     private ProductoDto productoToProductoDto(Producto producto) {
@@ -67,7 +88,8 @@ public class PrestamoMappingImpl implements IPrestamoMapping {
                 producto.getId(),
                 producto.getCategoria(),
                 producto.getPrecio(),
-                producto.getImagen());
+                producto.getRutaImagen(),
+                producto.getDescripcion());
     }
 
 
